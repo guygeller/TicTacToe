@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">TicTacToe</string>
+    <string name="title_txt_view">Tic Tac Toe</string>
+    <string name="play_btn">Play vs Friend</string>
+    <string name="ai_play_btn">Play vs AI</string>
+    <string name="setup_title_txt_view">Enter Your Name</string>
+    <string name="setup_btn">Submit</string>
+    <string name="player1_txt_view">Player 1</string>
+    <string name="player2_txt_view">Player 2</string>
+    <string name="name_hint">Enter Your Name</string>
+    <string name="play_again_btn">Play Again</string>
+    <string name="home_btn">Home</string>
+    <string name="tie_string">Tie!!!</string>
+    <string name="won_string">%1$s Won!!</string>
+    <string name="turn_string">%1$s\'s turn</string>
+</resources>

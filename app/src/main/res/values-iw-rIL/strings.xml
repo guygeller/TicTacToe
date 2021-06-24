@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">איקס עיגול</string>
+    <string name="title_txt_view">איקס עיגול</string>
+    <string name="play_btn">שחק מול חבר</string>
+    <string name="ai_play_btn">שחק מול מחשב</string>
+    <string name="setup_title_txt_view">רשמו את שמכם</string>
+    <string name="setup_btn">החל</string>
+    <string name="player1_txt_view">שחקן 1</string>
+    <string name="player2_txt_view">שחקן 2</string>
+    <string name="name_hint">רשמו את שמכם</string>
+    <string name="play_again_btn">שחק שוב</string>
+    <string name="home_btn">בית</string>
+    <string name="tie_string">תקו!!!</string>
+    <string name="won_string">ניצח!!!%1$s</string>
+    <string name="turn_string">תור של %1$s</string>
+</resources>
