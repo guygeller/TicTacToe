@@ -3,8 +3,8 @@ package com.example.tictactoe;
 
 public class AILogic {
 
-    private final int ai = 1;
-    private final int human = 2;
+    private final int human = 1;
+    private final int ai = 2;
 
     static public class Move {
         int row;
@@ -60,8 +60,8 @@ public class AILogic {
     }
 
 
-    public int minimax(int[][] gameBoard, int depth, Boolean isMax) {
-        int score = evaluate(gameBoard);
+    public int minimax(int[][] b, int depth, Boolean isMax) {
+        int score = evaluate(b);
         // If Maximizer has won the game return evaluated score
         if (score == 10)
             return +1;
@@ -69,7 +69,7 @@ public class AILogic {
         if (score == -10)
             return -1;
         // If there are no more moves and no winner then it is a tie
-        if (!isMovesLeft(gameBoard))
+        if (!isMovesLeft(b))
             return 0;
         // If this maximizer's move
         int best = 0;
@@ -79,13 +79,13 @@ public class AILogic {
             for (int r = 0; r < 3; r++) {
                 for (int c = 0; c < 3; c++) {
                     // Check if cell is empty
-                    if (gameBoard[r][c] == 0) {
+                    if (b[r][c] == 0) {
                         // Make the move
-                        gameBoard[r][c] = ai;
+                        b[r][c] = ai;
                         // Call minimax recursively and choose the maximum value
-                        best = Math.max(best, minimax(gameBoard, depth + 1, false));
+                        best = Math.max(best, minimax(b, depth + 1, false));
                         // Undo the move
-                        gameBoard[r][c] = 0;
+                        b[r][c] = 0;
                     }
                 }
             }
@@ -97,13 +97,13 @@ public class AILogic {
             for (int r = 0; r < 3; r++) {
                 for (int c = 0; c < 3; c++) {
                     // Check if cell is empty
-                    if (gameBoard[r][c] == 0) {
+                    if (b[r][c] == 0) {
                         // Make the move
-                        gameBoard[r][c] = human;
+                        b[r][c] = human;
                         // Call minimax recursively and choose the minimum value
-                        best = Math.min(best, minimax(gameBoard, depth + 1, true));
+                        best = Math.min(best, minimax(b, depth + 1, true));
                         // Undo the move
-                        gameBoard[r][c] = 0;
+                        b[r][c] = 0;
                     }
                 }
             }
@@ -113,10 +113,8 @@ public class AILogic {
 
 
     public Move findBestMove(int[][] gameBoard) {
-        int bestVal = 1000;
+        int bestVal = -1000;
         Move bestMove = new Move();
-        bestMove.row = 0;
-        bestMove.col = 0;
         // Traverse all cells, evaluate minimax function
         // for all empty cells. And return the cell
         // with optimal value.

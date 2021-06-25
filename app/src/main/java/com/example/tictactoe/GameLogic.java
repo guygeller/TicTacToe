@@ -135,7 +135,7 @@ public class GameLogic {
         player = 1;
         playAgainBtn.setVisibility(View.GONE);
         homeBtn.setVisibility(View.GONE);
-        playerTurn.setText(context.getString(R.string.won_string, playerNames[0]));
+        playerTurn.setText(context.getString(R.string.turn_string, playerNames[0]));
     }
 
     public int[][] getGameBoard() {
@@ -148,6 +148,19 @@ public class GameLogic {
 
     public int getPlayer() {
         return player;
+    }
+
+    public String getCurrentPlayerName() {
+        return playerNames[player - 1];
+    }
+
+    public String getOtherPlayerName() {
+        int player = this.player == 1 ? 2 : 1;
+        return playerNames[player - 1];
+    }
+
+    public void switchPlayer() {
+        this.player = this.player == 1 ? 2 : 1;
     }
 
     public void setPlayAgainBtn(Button playAgainBtn) {

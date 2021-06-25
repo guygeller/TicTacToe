@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -84,17 +85,24 @@ public class TicTacToeBoard extends View {
                         invalidate();
                     }
 
-                    // updating the players turn
+                    game.switchPlayer();
+                    invalidate();
 
-                    if (game.getPlayerNames(game.getPlayer() - 1).equals("ai") ) {
+                    if (game.getOtherPlayerName().equals("ai")) {
                         AILogic.Move move = aiGame.findBestMove(game.getGameBoard());
-                        game.updateGameBoard(move.row +1 , move.col +1);
-                    }
+                        if(!game.updateGameBoard(move.row + 1, move.col + 1)){
+                            Log.e("TicTacToeBoard", "ai can't make the move r:" + move.row + " c:" + move.col);
+                        } else {
+                            Log.e("TicTacToeBoard", "ai moved r:" + move.row + " c:" + move.col);
+                        }
 
-                    if (game.getPlayer() == 2) {
-                        game.setPlayer(game.getPlayer() - 1);
-                    } else if (game.getPlayer() == 1 ){
-                        game.setPlayer(game.getPlayer() + 1);
+                        game.switchPlayer();
+                        invalidate();
+
+                        if (game.winnerCheck()) {
+                            winningLine = true;
+                            invalidate();
+                        }
                     }
                 }
             }
