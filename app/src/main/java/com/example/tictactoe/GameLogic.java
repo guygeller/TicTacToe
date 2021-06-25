@@ -16,7 +16,7 @@ public class GameLogic {
     private String[] playerNames;
     //1st element-->row, 2nd element-->col, 3rd element--> line type
     private int[] winType = {-1, -1, -1};
-    private Context context;
+    private final Context context;
     private int player1ScoreCount;
     private int player2ScoreCount;
 
@@ -40,9 +40,9 @@ public class GameLogic {
 
             //happens in the opposite order because the turn is flipped after updateGameBoard
             if (player == 1) {
-                playerTurn.setText(context.getString(R.string.turn_string, playerNames[1]));
-            } else {
                 playerTurn.setText(context.getString(R.string.turn_string, playerNames[0]));
+            } else {
+                playerTurn.setText(context.getString(R.string.turn_string, playerNames[1]));
             }
             return true;
         } else {
@@ -135,23 +135,15 @@ public class GameLogic {
         player = 1;
         playAgainBtn.setVisibility(View.GONE);
         homeBtn.setVisibility(View.GONE);
-        playerTurn.setText(context.getString(R.string.turn_string, playerNames[0]));
+        playerTurn.setText(context.getString(R.string.turn_string, playerNames[1]));
     }
 
     public int[][] getGameBoard() {
         return gameBoard;
     }
 
-    public void setPlayer(int player) {
-        this.player = player;
-    }
-
     public int getPlayer() {
         return player;
-    }
-
-    public String getCurrentPlayerName() {
-        return playerNames[player - 1];
     }
 
     public String getOtherPlayerName() {

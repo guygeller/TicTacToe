@@ -1,12 +1,9 @@
 package com.example.tictactoe;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -37,15 +34,21 @@ public class GameDisplay extends AppCompatActivity {
 
 
         if (playerNames != null) {
-            playerTurn.setText(getString(R.string.turn_string, playerNames[0]));
+            playerTurn.setText(getString(R.string.turn_string, playerNames[1]));
         }
+
+        if (aiNames != null) {
+            playerTurn.setText(getString(R.string.turn_string, aiNames[1]));
+        }
+
         int pressed = getIntent().getExtras().getInt("button");
 
         board.setUpGame(playAgain, home, playerTurn, playerNames);
 
         if (pressed == 1) {
-            board.setUpAIGame(playAgain, home, playerTurn, aiNames);
+            board.setUpGame(playAgain, home, playerTurn, aiNames);
         }
+
     }
 
 

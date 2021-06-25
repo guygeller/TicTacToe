@@ -75,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void AIPlayClick(View view) {
         //AI activity
-        String you = "you";
-        String ai = "ai";
+        String you = getString(R.string.you_name);
+        String ai = getString(R.string.AI_name);
         Intent intent = new Intent(this, GameDisplay.class);
         intent.putExtra("PLAYER_AI_NAMES", new String[]{ai, you});
         intent.putExtra("button", 1);

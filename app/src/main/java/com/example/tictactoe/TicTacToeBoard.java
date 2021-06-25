@@ -23,7 +23,7 @@ public class TicTacToeBoard extends View {
     private int cellSize = getWidth() / 3;
     private final GameLogic game;
     private boolean winningLine = false;
-    private AILogic aiGame;
+    private final AILogic aiGame;
 
 
     public TicTacToeBoard(Context context, @Nullable AttributeSet attrs) {
@@ -88,7 +88,7 @@ public class TicTacToeBoard extends View {
                     game.switchPlayer();
                     invalidate();
 
-                    if (game.getOtherPlayerName().equals("ai")) {
+                    if (game.getOtherPlayerName().equals(getContext().getString(R.string.AI_name))) {
                         AILogic.Move move = aiGame.findBestMove(game.getGameBoard());
                         if(!game.updateGameBoard(move.row + 1, move.col + 1)){
                             Log.e("TicTacToeBoard", "ai can't make the move r:" + move.row + " c:" + move.col);
@@ -215,13 +215,6 @@ public class TicTacToeBoard extends View {
 
 
     public void setUpGame(Button playAgain, Button home, TextView playerDisplay, String[] names) {
-        game.setPlayAgainBtn(playAgain);
-        game.setHomeBtn(home);
-        game.setPlayerTurn(playerDisplay);
-        game.setPlayerNames(names);
-    }
-
-    public void setUpAIGame(Button playAgain, Button home, TextView playerDisplay, String[] names) {
         game.setPlayAgainBtn(playAgain);
         game.setHomeBtn(home);
         game.setPlayerTurn(playerDisplay);

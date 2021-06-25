@@ -13,4 +13,6 @@
     <string name="tie_string">Tie!!!</string>
     <string name="won_string">%1$s Won!!</string>
     <string name="turn_string">%1$s\'s turn</string>
+    <string name="AI_name">AI</string>
+    <string name="you_name">Your</string>
 </resources>
