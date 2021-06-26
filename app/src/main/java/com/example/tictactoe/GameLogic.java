@@ -2,6 +2,7 @@ package com.example.tictactoe;
 
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
@@ -19,6 +20,15 @@ public class GameLogic {
     private final Context context;
     private int player1ScoreCount;
     private int player2ScoreCount;
+    MediaPlayer mediaPlayer;
+
+    public void playSound(int raw) {
+        if (mediaPlayer == null) {
+            mediaPlayer = MediaPlayer.create(context.getApplicationContext(), raw);
+        }
+        mediaPlayer.start();
+        mediaPlayer=null;
+    }
 
 
     GameLogic(Context context) {
@@ -101,6 +111,8 @@ public class GameLogic {
             }
         }
         if (isWinner) {
+
+            playSound(R.raw.sound2);
             fadeIn(playAgainBtn);
             fadeIn(homeBtn);
             playerTurn.setText(context.getString(R.string.won_string, playerNames[player - 1]));
@@ -111,6 +123,7 @@ public class GameLogic {
             }
             return true;
         } else if (boardFilled == 9) {
+            playSound(R.raw.sound1);
             fadeIn(playAgainBtn);
             fadeIn(homeBtn);
             playerTurn.setText(R.string.tie_string);
