@@ -1,18 +1,31 @@
 package com.example.tictactoe;
 
+import java.util.ArrayList;
+import java.util.Random;
 
 public class AILogic {
 
     private final int human = 1;
     private final int ai = 2;
+    Random rand = new Random();
+
 
     static public class Move {
         int row;
         int col;
+
+        Move() {
+        }
+
+        Move(int row, int col) {
+            this.row = row;
+            this.col = col;
+        }
     }
 
-    AILogic(GameLogic gameLogic, int[][] gameBoard) {
+    AILogic() {
     }
+
 
     public Boolean isMovesLeft(int[][] gameBoard) {
         for (int r = 0; r < 3; r++)
@@ -59,7 +72,6 @@ public class AILogic {
         return 0;
     }
 
-
     public int minimax(int[][] b, int depth, Boolean isMax) {
         int score = evaluate(b);
         // If Maximizer has won the game return evaluated score
@@ -72,7 +84,7 @@ public class AILogic {
         if (!isMovesLeft(b))
             return 0;
         // If this maximizer's move
-        int best = 0;
+        int best; // = 0
         if (isMax) {
             best = -1000;
             // Traverse all cells
@@ -142,4 +154,36 @@ public class AILogic {
         }
         return bestMove;
     }
+
+
+    public Move findRandomMove(int[][] gameBoard) {
+        ArrayList<Move> emptyCells = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                // Check if cell is empty
+                if (gameBoard[i][j] == 0) {
+                    //add to an array of empty cells
+                    emptyCells.add(new Move(i, j));
+                }
+            }
+        }
+        if (isMovesLeft(gameBoard)) {
+            int randCell = rand.nextInt(emptyCells.size());
+            return emptyCells.get(randCell);
+        } else {
+            return null;
+        }
+    }
+
+    public Move findMove(int[][] gameBoard, boolean flag) {
+        Move move;
+        if (flag) {
+            move = findBestMove(gameBoard);
+
+        } else {
+            move = findRandomMove(gameBoard);
+        }
+        return move;
+    }
 }
+

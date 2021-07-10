@@ -8,14 +8,18 @@
     <string name="setup_btn">התחל</string>
     <string name="player1_txt_view">שחקן 1</string>
     <string name="player2_txt_view">שחקן 2</string>
-    <string name="name_hint">רשום שם</string>
-    <string name="play_again_btn">שחק שוב</string>
+    <string name="name_hint">רשום שם </string>
+    <string name="play_again_btn">שחק שוב&#160;</string>
     <string name="home_btn">בית</string>
     <string name="tie_string">תקו!!!</string>
     <string name="won_string">%1$s מנצח!!! </string>
     <string name="turn_string">תור של %1$s</string>
     <string name="AI_name">מחשב</string>
     <string name="you_name">שחקן</string>
+    <string name="difficulty_title">דרגת קושי</string>
+    <string name="easy_option">קל</string>
+    <string name="normal_option">בינוני</string>
+    <string name="hard_option">קשה</string>
 
 
 </resources>

@@ -29,7 +29,7 @@ public class TicTacToeBoard extends View {
     public TicTacToeBoard(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         game = new GameLogic(context);
-        aiGame = new AILogic(game, game.getGameBoard());
+        aiGame = new AILogic();
 
 
         TypedArray arr = context.getTheme().
@@ -82,25 +82,45 @@ public class TicTacToeBoard extends View {
 
                     if (game.winnerCheck()) {
                         winningLine = true;
-                        invalidate();
+                    } else {
+                        game.switchPlayer();
                     }
-
-                    game.switchPlayer();
                     invalidate();
 
-                    if (game.getOtherPlayerName().equals(getContext().getString(R.string.AI_name))) {
-                        AILogic.Move move = aiGame.findBestMove(game.getGameBoard());
-                        if(!game.updateGameBoard(move.row + 1, move.col + 1)){
-                            Log.e("TicTacToeBoard", "ai can't make the move r:" + move.row + " c:" + move.col);
-                        } else {
-                            Log.e("TicTacToeBoard", "ai moved r:" + move.row + " c:" + move.col);
+                    if (game.isFlagAI() && !winningLine) {
+                        AILogic.Move move = new AILogic.Move();
+                        switch (game.getDiffOptionIndex()) {
+                            case 0: // random moves
+                                Log.e("case 0", "case 0 - easy");
+                                move = aiGame.findRandomMove(game.getGameBoard());
+                                break;
+                            case 1: // 2 minimax moves then random moves
+                                Log.e("case 1", "case 1 - normal");
+                                if (game.getMoveNum() < 5) {
+                                    Log.e("case 1", "true");
+                                    move = aiGame.findMove(game.getGameBoard(), true);
+                                } else {
+                                    Log.e("case 1", "false");
+                                    move = aiGame.findMove(game.getGameBoard(), false);
+                                }
+                                break;
+                            case 2: // minimax moves
+                                Log.e("case 2", "case 2 - hard");
+                                move = aiGame.findBestMove(game.getGameBoard());
+                                break;
                         }
+                        if (move != null) {
+                            if (!game.updateGameBoard(move.row + 1, move.col + 1)) {
+                                Log.e("TicTacToeBoard", "ai can't make the move r:" + move.row + " c:" + move.col);
+                            } else {
+                                Log.e("TicTacToeBoard", "ai moved r:" + move.row + " c:" + move.col);
+                            }
 
-                        game.switchPlayer();
-                        invalidate();
-
-                        if (game.winnerCheck()) {
-                            winningLine = true;
+                            if (game.winnerCheck()) {
+                                winningLine = true;
+                            } else {
+                                game.switchPlayer();
+                            }
                             invalidate();
                         }
                     }
@@ -178,14 +198,14 @@ public class TicTacToeBoard extends View {
                 paint);
     }
 
-    private void drawDiagLinePos(Canvas canvas) {
+    private void drawDiagonalLinePos(Canvas canvas) {
         canvas.drawLine(0, cellSize * 3,
                 cellSize * 3,
                 0,
                 paint);
     }
 
-    private void drawDiagLineNeg(Canvas canvas) {
+    private void drawDiagonalLineNeg(Canvas canvas) {
         canvas.drawLine(0, 0,
                 cellSize * 3,
                 cellSize * 3,
@@ -205,10 +225,10 @@ public class TicTacToeBoard extends View {
                 drawVerticalLine(canvas, row, col);
                 break;
             case 3:
-                drawDiagLineNeg(canvas);
+                drawDiagonalLineNeg(canvas);
                 break;
             case 4:
-                drawDiagLinePos(canvas);
+                drawDiagonalLinePos(canvas);
                 break;
         }
     }
@@ -219,6 +239,15 @@ public class TicTacToeBoard extends View {
         game.setHomeBtn(home);
         game.setPlayerTurn(playerDisplay);
         game.setPlayerNames(names);
+    }
+
+    public void setUpGameAI(Button playAgain, Button home, TextView playerDisplay, String[] names, int diffIndex, boolean flag) {
+        game.setPlayAgainBtn(playAgain);
+        game.setHomeBtn(home);
+        game.setPlayerTurn(playerDisplay);
+        game.setPlayerNames(names);
+        game.setDiffOptionIndex(diffIndex);
+        game.setFlagAI(flag);
     }
 
     public void resetGame() {

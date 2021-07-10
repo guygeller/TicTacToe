@@ -1,11 +1,13 @@
 package com.example.tictactoe;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
 
 public class GameDisplay extends AppCompatActivity {
 
@@ -13,10 +15,12 @@ public class GameDisplay extends AppCompatActivity {
     private TextView player1Score;
     private TextView player2Score;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_display);
+
 
         Button playAgain = findViewById(R.id.play_again_id);
         Button home = findViewById(R.id.home_id);
@@ -30,23 +34,25 @@ public class GameDisplay extends AppCompatActivity {
 
         String[] playerNames = getIntent().getStringArrayExtra("PLAYER_NAMES");
         String[] aiNames = getIntent().getStringArrayExtra("PLAYER_AI_NAMES");
+        int optionIndex = getIntent().getIntExtra("DIFF_NUM", 0);
+        boolean flagAI = getIntent().getExtras().getBoolean("FLAG");
+
         board = findViewById(R.id.ticTacToeBoard);
 
 
         if (playerNames != null) {
-            playerTurn.setText(getString(R.string.turn_string, playerNames[1]));
+            playerTurn.setText(getString(R.string.turn_string, playerNames[0]));
         }
 
         if (aiNames != null) {
-            playerTurn.setText(getString(R.string.turn_string, aiNames[1]));
+            playerTurn.setText(getString(R.string.turn_string, aiNames[0]));
         }
 
-        int pressed = getIntent().getExtras().getInt("button");
 
-        board.setUpGame(playAgain, home, playerTurn, playerNames);
-
-        if (pressed == 1) {
-            board.setUpGame(playAgain, home, playerTurn, aiNames);
+        if (flagAI) {
+            board.setUpGameAI(playAgain, home, playerTurn, aiNames, optionIndex, true);
+        } else {
+            board.setUpGame(playAgain, home, playerTurn, playerNames);
         }
 
     }
@@ -59,9 +65,9 @@ public class GameDisplay extends AppCompatActivity {
     }
 
     public void updateScore() {
-        player1Score.setText(String.format("%s:\n      %s", board.getGame().getPlayerNames(0),
+        player1Score.setText(String.format("  %s:  %s  ", board.getGame().getPlayerNames(0),
                 board.getGame().getPlayer1ScoreCount()));
-        player2Score.setText(String.format("%s:\n      %s", board.getGame().getPlayerNames(1),
+        player2Score.setText(String.format("  %s:  %s  ", board.getGame().getPlayerNames(1),
                 board.getGame().getPlayer2ScoreCount()));
     }
 

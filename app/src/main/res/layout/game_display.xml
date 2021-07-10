@@ -5,8 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_background"
+    android:background="@drawable/background3"
     tools:context=".GameDisplay">
+
 
     <TextView
         android:id="@+id/game_dis_title_txt_view"
@@ -16,6 +17,7 @@
         android:textColor="@color/turn_title"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:background="@drawable/txt_view_background_black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,6 +88,7 @@
         android:textColor="@color/turn_title"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:background="@drawable/txt_view_background_black"
         app:layout_constraintEnd_toStartOf="@+id/score_right_id"
         app:layout_constraintHorizontal_bias="0.072"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,6 +101,7 @@
         android:layout_marginTop="36dp"
         android:textColor="@color/turn_title"
         android:textSize="18sp"
+        android:background="@drawable/txt_view_background_black"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/score_left_id"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_background"
+    android:background="@drawable/background3"
     tools:context=".PlayerSetup">
 
     <TextView
@@ -54,12 +54,13 @@
     <EditText
         android:id="@+id/enter_name1_id"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginTop="100dp"
         android:ems="10"
+        android:background="@drawable/txt_view_background_white"
         android:hint="@string/name_hint"
         android:inputType="textPersonName"
-        android:textColorHint="@color/grey"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,12 +69,13 @@
     <EditText
         android:id="@+id/enter_name2_id"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginTop="60dp"
         android:ems="10"
         android:hint="@string/name_hint"
+        android:background="@drawable/txt_view_background_white"
         android:inputType="textPersonName"
-        android:textColorHint="@color/grey"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"

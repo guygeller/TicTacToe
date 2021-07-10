@@ -6,8 +6,8 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
 
-    <color name="lightRed">#FF5252</color>
-    <color name="lightBlue">#40C4FF</color>
+    <color name="lightRed">#FF3D00</color>
+    <color name="lightBlue">#2979FF</color>
 
     <color name="winnerLine">#76FF03</color>
     <color name="oColor">#1097EA</color>
@@ -17,9 +17,8 @@
     <color name="middle">#546E7A</color>
     <color name="end">#263238</color>
 
-    <color name="turn_title">#FF9800</color>
-    <color name="board_titles">#FFFF00</color>
-    <color name="darkBlue">#111F28</color>
+    <color name="turn_title">#FFFF00</color>
+    <color name="board_titles">#0D47A1</color>
     <color name="grey">#E0E0E0</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

@@ -1,26 +1,29 @@
 package com.example.tictactoe;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.VideoView;
 
 public class MainActivity extends AppCompatActivity {
     private VideoView videoBackground;
     MediaPlayer mMediaPlayer;
     int currentVideoPosition;
+    private int difficultyChosen;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        videoBackground = (VideoView) findViewById(R.id.video_view);
+        videoBackground = findViewById(R.id.video_view);
 
         Uri uri = Uri.parse("android.resource://"
                 + getPackageName()
@@ -29,19 +32,26 @@ public class MainActivity extends AppCompatActivity {
         videoBackground.setVideoURI(uri);
         videoBackground.start();
 
-        videoBackground.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mMediaPlayer = mp;
-                //video is looping
-                mMediaPlayer.setLooping(true);
-                // seeking the current position if it has been set and play the video
-                if (currentVideoPosition != 0) {
-                    mMediaPlayer.seekTo(currentVideoPosition);
-                    mMediaPlayer.start();
-                }
+        videoBackground.setOnPreparedListener(mp -> {
+            mMediaPlayer = mp;
+            //video is looping
+            mMediaPlayer.setLooping(true);
+            // seeking the current position if it has been set and play the video
+            if (currentVideoPosition != 0) {
+                mMediaPlayer.seekTo(currentVideoPosition);
+                mMediaPlayer.start();
             }
         });
+
+    }
+
+    public void setDifficultyChosen(int difficultyChosen) {
+        this.difficultyChosen = difficultyChosen;
+    }
+
+
+    public int getDifficultyChosen() {
+        return difficultyChosen;
     }
 
     @Override
@@ -74,13 +84,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void AIPlayClick(View view) {
+        Resources res = getResources();
+        final String[] diff = {res.getString(R.string.easy_option), res.getString(R.string.normal_option), res.getString(R.string.hard_option)};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.difficulty_title));
+        builder.setSingleChoiceItems(diff, 0, (dialog, which) -> setDifficultyChosen(which));
+        builder.setPositiveButton(android.R.string.ok, (dialog, which) -> onYesClick(view));
+        // A null listener allows the button to dismiss the dialog and take no further action.
+        builder.setNegativeButton(android.R.string.cancel, null);
+        builder.setIcon(android.R.drawable.ic_menu_set_as);
+        builder.show();
+    }
+
+
+    public void onYesClick(View view) {
         //AI activity
-        String you = getString(R.string.you_name);
+        int difficultyChosen = getDifficultyChosen();
+        String player = getString(R.string.you_name);
         String ai = getString(R.string.AI_name);
         Intent intent = new Intent(this, GameDisplay.class);
-        intent.putExtra("PLAYER_AI_NAMES", new String[]{ai, you});
-        intent.putExtra("button", 1);
+        intent.putExtra("PLAYER_AI_NAMES", new String[]{player, ai});
+        intent.putExtra("DIFF_NUM", difficultyChosen);
+        intent.putExtra("FLAG", true);
         startActivity(intent);
-
     }
 }
