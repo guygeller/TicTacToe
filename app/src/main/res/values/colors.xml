@@ -13,12 +13,10 @@
     <color name="oColor">#1097EA</color>
     <color name="xColor">#E60C0C</color>
 
-    <color name="start">#90A4AE</color>
-    <color name="middle">#546E7A</color>
-    <color name="end">#263238</color>
+    <color name="board">#1A237E</color>
+    <color name="yellow">#FFEB3B</color>
 
-    <color name="turn_title">#FFFF00</color>
-    <color name="board_titles">#0D47A1</color>
+    <color name="titles_and_turns">#FFFF00</color>
     <color name="grey">#E0E0E0</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

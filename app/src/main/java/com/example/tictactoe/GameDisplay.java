@@ -1,7 +1,6 @@
 package com.example.tictactoe;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,8 +21,8 @@ public class GameDisplay extends AppCompatActivity {
         setContentView(R.layout.game_display);
 
 
-        Button playAgain = findViewById(R.id.play_again_id);
-        Button home = findViewById(R.id.home_id);
+        Button playAgain = findViewById(R.id.play_again__btn_id);
+        Button home = findViewById(R.id.home_btn_id);
         TextView playerTurn = findViewById(R.id.game_dis_title_txt_view);
 
         player1Score = findViewById(R.id.score_left_id);
@@ -37,7 +36,7 @@ public class GameDisplay extends AppCompatActivity {
         int optionIndex = getIntent().getIntExtra("DIFF_NUM", 0);
         boolean flagAI = getIntent().getExtras().getBoolean("FLAG");
 
-        board = findViewById(R.id.ticTacToeBoard);
+        board = findViewById(R.id.ticTacToeBoard_id);
 
 
         if (playerNames != null) {
@@ -54,7 +53,6 @@ public class GameDisplay extends AppCompatActivity {
         } else {
             board.setUpGame(playAgain, home, playerTurn, playerNames);
         }
-
     }
 
 

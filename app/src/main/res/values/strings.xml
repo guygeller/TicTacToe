@@ -7,18 +7,19 @@
     <string name="setup_btn">Submit</string>
     <string name="player1_txt_view">&#160;Player 1&#160;</string>
     <string name="player2_txt_view">&#160;Player 2&#160;</string>
-    <string name="name_hint">&#160;Enter Your Name</string>
+    <string name="name_hint">&#160;Enter Your Name&#160;</string>
     <string name="play_again_btn">Play Again</string>
     <string name="home_btn">Home</string>
-    <string name="tie_string">Tie!!!</string>
+    <string name="tie_string">&#160;Tie!!!&#160;</string>
     <string name="won_string">&#160;%1$s Won!!&#160;</string>
     <string name="turn_string">&#160;%1$s\'s turn&#160;</string>
-    <string name="AI_name">AI</string>
-    <string name="you_name">Player</string>
+    <string name="AI_name">&#160;AI&#160;</string>
+    <string name="you_name">&#160;Player&#160;</string>
     <string name="difficulty_title">Choose Difficulty</string>
     <string name="easy_option">Easy</string>
     <string name="normal_option">Normal</string>
     <string name="hard_option">Hard</string>
+    <string name="online_login">MultiPlayer</string>
 
 
 

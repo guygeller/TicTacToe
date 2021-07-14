@@ -138,6 +138,7 @@ public class TicTacToeBoard extends View {
         for (int c = 1; c < 3; c++) {
             canvas.drawLine(cellSize * c, 0, cellSize * c, canvas.getWidth(), paint);
         }
+
         for (int r = 1; r < 3; r++) {
             canvas.drawLine(0, cellSize * r, canvas.getWidth(), cellSize * r, paint);
         }

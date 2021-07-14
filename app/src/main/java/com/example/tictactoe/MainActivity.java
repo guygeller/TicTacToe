@@ -2,7 +2,6 @@ package com.example.tictactoe;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
@@ -108,4 +107,9 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("FLAG", true);
         startActivity(intent);
     }
+
+   /* public void onClickScoreList(View view) {
+        Intent intent = new Intent(this, );
+        startActivity(intent);
+    }*/
 }
