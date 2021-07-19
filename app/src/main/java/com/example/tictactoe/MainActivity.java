@@ -2,12 +2,16 @@ package com.example.tictactoe;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.VideoView;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer mMediaPlayer;
     int currentVideoPosition;
     private int difficultyChosen;
+    Button mute;
+    private boolean muteBool = true;
 
 
     @Override
@@ -22,7 +28,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // play background music
+        Intent backgroundMusic = new Intent(MainActivity.this, BackgroundSoundService.class);
+        startService(backgroundMusic);
+
         videoBackground = findViewById(R.id.video_view);
+        mute = findViewById(R.id.mute_btn_id);
 
         Uri uri = Uri.parse("android.resource://"
                 + getPackageName()
@@ -43,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 
     public void setDifficultyChosen(int difficultyChosen) {
         this.difficultyChosen = difficultyChosen;
@@ -76,6 +88,19 @@ public class MainActivity extends AppCompatActivity {
         mMediaPlayer = null;
     }
 
+
+    public void onClickMute(View view) {
+        AudioManager manager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
+        if (muteBool) {
+            manager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+            muteBool = false;
+        } else {
+            manager.setStreamVolume(AudioManager.STREAM_MUSIC, 20, 0);
+            muteBool = true;
+        }
+    }
+
+
     public void PlayClick(View view) {
         //Player Setup activity
         Intent intent = new Intent(this, PlayerSetup.class);
@@ -95,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
-
     public void onYesClick(View view) {
         //AI activity
         int difficultyChosen = getDifficultyChosen();
@@ -107,9 +131,4 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("FLAG", true);
         startActivity(intent);
     }
-
-   /* public void onClickScoreList(View view) {
-        Intent intent = new Intent(this, );
-        startActivity(intent);
-    }*/
 }
