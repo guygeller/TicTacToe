@@ -6,10 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
 import java.text.SimpleDateFormat;
 import java.util.Locale;
-import java.util.TimeZone;
+
 
 public class HistoryItemAdapter  extends ArrayAdapter<HistoryItem>{
 
@@ -41,9 +40,9 @@ public class HistoryItemAdapter  extends ArrayAdapter<HistoryItem>{
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.history_item_row, parent, false);
-            viewHolder.txtDate = (TextView) convertView.findViewById(R.id.date_id);
-            viewHolder.txtName1 = (TextView) convertView.findViewById(R.id.name1_id);
-            viewHolder.txtName2 = (TextView) convertView.findViewById(R.id.name2_id);
+            viewHolder.txtDate = convertView.findViewById(R.id.date_id);
+            viewHolder.txtName1 = convertView.findViewById(R.id.name1_id);
+            viewHolder.txtName2 = convertView.findViewById(R.id.name2_id);
 
             convertView.setTag(viewHolder);
         } else {
@@ -55,8 +54,12 @@ public class HistoryItemAdapter  extends ArrayAdapter<HistoryItem>{
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         String text = sdf.format(dataModel.match);
         viewHolder.txtDate.setText(text);
+        viewHolder.txtDate.setTextColor(getContext().getColor(R.color.black));
+        viewHolder.txtDate.setBackgroundColor(getContext().getColor(R.color.white));
         viewHolder.txtName1.setText(dataModel.player1);
+        viewHolder.txtName1.setBackgroundColor(getContext().getColor(R.color.white));
         viewHolder.txtName2.setText(dataModel.player2);
+        viewHolder.txtName2.setBackgroundColor(getContext().getColor(R.color.white));
         viewHolder.txtName1.setTextColor(dataModel.winner==1? getContext().getColor(R.color.winner): getContext().getColor(R.color.black));
         viewHolder.txtName2.setTextColor(dataModel.winner==2? getContext().getColor(R.color.winner): getContext().getColor(R.color.black));
         // Return the completed view to render on screen
