@@ -9,8 +9,6 @@ import android.os.IBinder;
 public class BackgroundSoundService extends Service {
     MediaPlayer mediaPlayer;
 
-
-
     @Override
     public IBinder onBind(Intent intent) {
         return null;

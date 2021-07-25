@@ -12,7 +12,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.VideoView;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class MainActivity extends AppCompatActivity {
     private VideoView videoBackground;
@@ -129,6 +133,11 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("PLAYER_AI_NAMES", new String[]{player, ai});
         intent.putExtra("DIFF_NUM", difficultyChosen);
         intent.putExtra("FLAG", true);
+        startActivity(intent);
+    }
+
+    public void onClickHistory(View view) {
+        Intent intent = new Intent(this, ListViewHistory.class);
         startActivity(intent);
     }
 }

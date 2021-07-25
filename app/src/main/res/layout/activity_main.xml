@@ -73,11 +73,27 @@
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
-        android:onClick="onClickMute"
         android:background="@drawable/mute_button"
+        android:onClick="onClickMute"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/history_btn_id"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/blue_btn"
+        android:fontFamily="monospace"
+        android:onClick="onClickHistory"
+        android:text="@string/history_btn"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ai_play_btn_id" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

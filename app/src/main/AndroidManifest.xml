@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TicTacToe">
+        <activity android:name=".ListViewHistory"></activity>
         <activity android:name=".GameDisplay" />
         <activity android:name=".PlayerSetup" />
         <activity android:name=".MainActivity">

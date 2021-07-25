@@ -2,12 +2,16 @@ package com.example.tictactoe;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 
 public class GameLogic {
@@ -25,6 +29,8 @@ public class GameLogic {
     MediaPlayer mediaPlayer;
     private int moveNum = 0;
     private boolean flagAI = false;
+
+    Gson gson = new GsonBuilder().create();
 
     public boolean isFlagAI() {
         return flagAI;
@@ -121,6 +127,17 @@ public class GameLogic {
             } else {
                 player1ScoreCount++;
             }
+            SharedPreferences sh = context.getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+            String s1 = sh.getString("history", "{items:[]}");
+            HistoryHolder holder = gson.fromJson(s1, HistoryHolder.class);
+            HistoryItem item = new HistoryItem();
+            item.player1= playerNames[0];
+            item.player2= playerNames[1];
+            item.winner = getPlayer();
+            holder.items.add(item);
+            SharedPreferences.Editor myEdit = sh.edit();
+            myEdit.putString("history", gson.toJson(holder));
+            myEdit.commit();
             return true;
         } else if (boardFilled == 9) {
             playSound(R.raw.sound1);
